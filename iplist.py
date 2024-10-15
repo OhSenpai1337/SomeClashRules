@@ -42,12 +42,12 @@ def aggregate_ips(ips):
     
     return aggregated_ips
 
-# Генерация файла в формате YAML
+# Генерация файла в формате YAML с одинарными кавычками
 def generate_yaml(aggregated_ips):
-    payload = [f"'{ip}'" for ip in aggregated_ips]  # Добавляем одинарные кавычки к IP-адресам
+    payload = [str(ip) for ip in aggregated_ips]
     data = {'payload': payload}
     with open('Discord_RPC.yaml', 'w') as yaml_file:
-        yaml.dump(data, yaml_file, default_flow_style=False, allow_unicode=True, default_style="'")
+        yaml.dump(data, yaml_file, default_flow_style=False, allow_unicode=True)
     print("Файл Discord_RPC.yaml создан")
 
 # Публикация файла на GitHub
